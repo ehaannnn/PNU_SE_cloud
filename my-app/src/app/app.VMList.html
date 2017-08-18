@@ -1,0 +1,16 @@
+
+<div class="leftMenu"> 
+            <input class="snapButton" type="button" value="스냅샷 관리">
+            <input class="snapButton" type="button" value="스냅샷 예약 관리">
+
+    <div *ngFor='let f of farms'>
+            <ul class="leftMenuList">
+                <input type="button" (click)="toggleServer(ViewOfServer)"class="leftMenuItem" value={{f.name}}>
+                <div *ngIf="ViewOfServer">
+                    <div *ngFor='let server of f.servers' style="margin-left:25px">
+                        <input type="button" (click)="selectServer(server)"class="leftMenuItem" value={{server.name}}>
+                    </div>
+                </div>
+            </ul>
+    </div>
+</div>
