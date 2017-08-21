@@ -7,13 +7,14 @@ import {FarmList} from './Data/farm-mock.service';
 import {SelectedServer} from './SelectedServer-service';
 import { HDaasVMListService} from './data/vm-mock.service';
 import { OpenStackVMListService} from './data/vm-mock.service';
+
 @Component({
-    selector: 'vm-list',
-    templateUrl:'./app.VMList.html',
+    selector: 'vm-manage-left',
+    templateUrl:'./app.VMManageLeft.html',
 	styleUrls: ['./app.component.css']
 })
 
-export class VMListView{
+export class VMManageLeft{
     ViewOfServer : boolean;
     farms: Farm[];
     constructor(public farmList:FarmList, public serverService:ServerList,public selected:SelectedServer,public HDaaS:HDaasVMListService,public OpenStack:OpenStackVMListService){

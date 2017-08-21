@@ -1,3 +1,5 @@
 export class Menu {
-	name : string;
+	name : String;
+	subMenu : String[];
+	subMenuLink : String[];
 }

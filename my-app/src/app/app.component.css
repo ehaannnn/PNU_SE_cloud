@@ -1,3 +1,27 @@
+.mainMenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.menus li {
+    float: left;
+}
+
+.menus li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.menus li a:hover {
+    background-color: #111;
+}
+
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
@@ -5,7 +29,7 @@ h1 {
 }
 
 div.leftMenu{
-  background-color: rgb(130, 130, 130);
+  background-color: #ededed;
   position: absolute;
   left: 0;
   width: 250px;

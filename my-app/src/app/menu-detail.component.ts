@@ -5,7 +5,7 @@ import { Menu } from './menu';
   selector: 'menu-detail',
   template: `
 	<div style="background: gray" *ngIf="menu">
-		<div><label>홈 > </label>{{menu.name}}</div>
+		<div><label>홈 > </label>{{menu.name}}<label> > </label>{{menu.subMenu[0]}}</div>
 	</div>
   `
   

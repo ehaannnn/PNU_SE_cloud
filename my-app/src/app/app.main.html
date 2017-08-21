@@ -1,4 +1,16 @@
-<h1 style="text-align:center;">HDaaS</h1>
-<vm-list></vm-list>
+<div class="mainMenu">
+	<ul class="menus">
+		<li *ngFor="let item of menus"
+			[class.selected]="item === selectedMenu" 
+			(click)="onClick(item)">
+			<a routerLink={{item.subMenuLink[0]}} >{{item.name}}</a>
+		</li>
+	</ul>
+	
+</div>
+<div>
+	<menu-detail [menu]="selectedMenu"></menu-detail>
+</div>
+
 <router-outlet>
 </router-outlet>
