@@ -1,16 +1,16 @@
 import {Component,OnInit,Injectable} from '@angular/core';
-import {VM} from './Data/Vm';
-import {Server} from './Data/server';
-import {Farm} from './Data/farm';
-import {ServerList} from './Data/server-mock.service';
-import {FarmList} from './Data/farm-mock.service';
-import {SelectedServer} from './SelectedServer-service';
-import { HDaasVMListService} from './data/vm-mock.service';
-import { OpenStackVMListService} from './data/vm-mock.service';
+import {VM} from '../Data/Vm';
+import {Server} from '../Data/server';
+import {Farm} from '../Data/farm';
+import {ServerList} from '../Data/server-mock.service';
+import {FarmList} from '../Data/farm-mock.service';
+import {SelectedServer} from '../SelectedServer-service';
+import { HDaasVMListService} from '../data/vm-mock.service';
+import { OpenStackVMListService} from '../data/vm-mock.service';
 @Component({
     selector: 'vm-list',
     templateUrl:'./app.VMList.html',
-	styleUrls: ['./app.component.css']
+	styleUrls: ['../app.component.css']
 })
 
 export class VMListView{

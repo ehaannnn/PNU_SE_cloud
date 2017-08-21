@@ -8,8 +8,6 @@ import { Menu } from './menu';
 		<div><label>홈 > </label>{{menu.name}}<label> > </label>{{menu.subMenu[0]}}</div>
 	</div>
   `
-  
- 
 })
 
 export class MenuDetailComponent {

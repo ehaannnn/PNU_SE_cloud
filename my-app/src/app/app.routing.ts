@@ -1,13 +1,14 @@
+
 import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
-import {VMSnapShot} from './app.SnapShotList';
+import {SnapShotMain} from './SnapShotManage/SnapShotMain';
 import {testMain} from './app.testMain';
 import {VMManageRight} from './app.VMManageRight';
 
 const helloRoutes: Routes=[
-    {path:'vm_snapshot',component:VMSnapShot},
     {path:'',component:testMain},
+    {path:'vm_snapshot',component:SnapShotMain},
     {path:'vm_manage',component: VMManageRight}
 ]
 const appRoutes: Routes =[

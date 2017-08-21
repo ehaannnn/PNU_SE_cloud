@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
-import {VM} from'./Data/vm';
-import {Server} from './Data/server';
-import {SelectedServer} from './SelectedServer-service';
-import {State} from './Data/vm';
+import {VM} from'../Data/vm';
+import {Server} from '../Data/server';
+import {SelectedServer} from '../SelectedServer-service';
+import {State} from '../Data/vm';
 @Component({
     selector: "vm-snapshot",
     templateUrl: "./app.SnapShotList.html",
-	styleUrls: ['./app.component.css']
+	styleUrls: ['../app.component.css']
 })
 export class VMSnapShot{
     selectedVM : VM[];
