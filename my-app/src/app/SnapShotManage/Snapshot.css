@@ -1,0 +1,42 @@
+
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+div.leftMenu{
+  background-color: #ededed;
+  position: absolute;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  border-right: 3px solid #000000;
+}
+
+input.snapButton{
+  width: 45%;
+  position: relative;
+  background-color: white;
+  color: black;
+  border: none;
+  margin-left: 5px;
+  margin-top: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ul.leftMenuList{
+  color:black;
+}
+input.leftMenuItem{
+  cursor: pointer;
+  background-color:rgba(0, 0, 0, 0.00);
+  border:none;
+}
+
+div.body{
+  position: relative;
+  left: 250px;
+  width: 100%;
+  height: 100%;
+}

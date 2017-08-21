@@ -8,7 +8,7 @@ import {VMManageRight} from './app.VMManageRight';
 
 const helloRoutes: Routes=[
     {path:'',component:testMain},
-    {path:'vm_snapshot',component:SnapShotMain},
+    {path:'vm_snapshot',loadChildren:'app/SnapShotManage/Snapshot.module#SnapShotModule'},
     {path:'vm_manage',component: VMManageRight}
 ]
 const appRoutes: Routes =[

@@ -6,7 +6,7 @@ import {State} from '../Data/vm';
 @Component({
     selector: "vm-snapshot",
     templateUrl: "./app.SnapShotList.html",
-	styleUrls: ['../app.component.css']
+	styleUrls: ['./Snapshot.css']
 })
 export class VMSnapShot{
     selectedVM : VM[];

@@ -9,7 +9,7 @@ import { SelectedServer } from '../SelectedServer-service';
 @Component({
   selector: 'snap-main',
   templateUrl:'./SnapShotMain.html',
-  styleUrls: ['../app.component.css'],
+  styleUrls: ['./Snapshot.css'],
   providers: [  ServerList,FarmList,HDaasVMListService,OpenStackVMListService,SelectedServer]
 })
 

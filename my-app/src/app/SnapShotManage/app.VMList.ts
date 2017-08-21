@@ -10,7 +10,7 @@ import { OpenStackVMListService} from '../data/vm-mock.service';
 @Component({
     selector: 'vm-list',
     templateUrl:'./app.VMList.html',
-	styleUrls: ['../app.component.css']
+	styleUrls: ['./Snapshot.css']
 })
 
 export class VMListView{
