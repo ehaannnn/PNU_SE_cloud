@@ -20,6 +20,5 @@ import {SnapShotSchedule} from './app.SnapShotSchedule';
     VMSnapShot,
     SnapShotSchedule
   ],
- 
 })
 export class SnapShotModule {}
