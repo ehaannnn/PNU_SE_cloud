@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Farm} from './data/Farm';
 import {ServerList} from './data/server-mock.service';
 import {FarmList} from './data/farm-mock.service';
+
 import { HDaasVMListService} from './data/vm-mock.service';
 import { OpenStackVMListService} from './data/vm-mock.service';
 import { SelectedServer } from './SelectedServer-service';
@@ -15,7 +16,6 @@ const MENUS: Menu[] = [
 	{name: '사용자 관리', subMenu: [], subMenuLink: ['','']},
 ];
 
-
 @Component({
   selector: 'main',
   templateUrl:'./app.main.html',
@@ -24,12 +24,10 @@ const MENUS: Menu[] = [
 })
 
 export class Main { 
-  constructor(){
-  }
+  constructor(){}
   
   menus = MENUS;
   selectedMenu: Menu = MENUS[0];
-
   
   onClick(menu : Menu): void {
 	  this.selectedMenu = menu;
