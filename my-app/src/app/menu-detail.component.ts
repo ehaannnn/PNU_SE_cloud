@@ -12,4 +12,5 @@ import { Menu } from './menu';
 
 export class MenuDetailComponent {
 	@Input() menu: Menu;
+	//@Input() index: number;
 }
