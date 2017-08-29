@@ -1,7 +1,6 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
 import { VMListView } from'./app.VMList';
 import {VMSnapShot} from './app.SnapShotList';
 import {SnapShotMain} from './SnapShotMain';

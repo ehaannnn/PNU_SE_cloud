@@ -8,6 +8,7 @@ import { VMListView } from'./app.VMList';
 import {VMSnapShot} from './app.SnapShotList';
 import {SnapShotMain} from './SnapShotMain';
 import {SnapShotSchedule} from './app.SnapShotSchedule';
+
 @NgModule({
   imports: [
     CommonModule,

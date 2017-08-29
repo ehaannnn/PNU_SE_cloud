@@ -4,12 +4,12 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {SnapShotMain} from './SnapShotManage/SnapShotMain';
 import {testMain} from './app.testMain';
-import {VMManageRight} from './app.VMManageRight';
+import {VMManagerModule} from './VMManager/VMRouting.module';
 
 const helloRoutes: Routes=[
-    {path:'',component:testMain},
-    {path:'vm_snapshot',loadChildren:'app/SnapShotManage/Snapshot.module#SnapShotModule'},
-    {path:'vm_manage',component: VMManageRight}
+    {path:'', component:testMain},
+    {path:'vm_snapshot', loadChildren:'app/SnapShotManage/Snapshot.module#SnapShotModule'},
+    {path:'vm_manage', loadChildren:'app/VMManager/VMRouting.module#VMManagerModule'}
 ]
 const appRoutes: Routes =[
     ...helloRoutes
