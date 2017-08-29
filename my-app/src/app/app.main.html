@@ -2,8 +2,9 @@
 	<ul class="menus">
 		<li *ngFor="let item of menus"
 			[class.selected]="item === selectedMenu" 
-			(click)="onClick(item)">
+			(click)="onClick(item, 0)">
 			<a routerLink={{item.subMenuLink[0]}} >{{item.name}}</a>
+			<!--<li *ngFor = "let sub of item.subMenu"></li>-->
 		</li>
 	</ul>
 	

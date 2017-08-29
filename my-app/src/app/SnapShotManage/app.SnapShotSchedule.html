@@ -3,7 +3,7 @@
     <br>
      <div style="width: 75%; position:absolute; left:50%; margin-left:-47%">
          <div style="position:absolute; right:0px;">
-            <input  type="button" value="스냅샷 예약" (click)=createSnapShot()>
+            <schedule></schedule>
             <input  type="button" value="스냅샷 예약 확인" (click)=deleteConfirm()>     
         </div>
         <br>
@@ -23,10 +23,5 @@
                 <td>none</td>
             </tr>
         </table>
-        <ul>
-            <li *ngFor ='let vm of selectedVM'>
-                {{vm.name}}
-            </li>
-        </ul>
     </div>
 </div>

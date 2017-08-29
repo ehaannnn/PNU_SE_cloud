@@ -28,8 +28,10 @@ export class Main {
   
   menus = MENUS;
   selectedMenu: Menu = MENUS[0];
+  //subMenuIndex: number;
   
   onClick(menu : Menu): void {
 	  this.selectedMenu = menu;
+	  //this.subMenuindex = ;
   }
 }

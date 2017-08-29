@@ -1,0 +1,44 @@
+<a href="/vm_snapshot/schedule#open">스냅샷 생성</a>
+<div class="snapshot_schedule" id="open">
+    <div>
+        <div style="width:100%;margin:auto;">
+            <span style="font-size:25px">스냅샷 예약</span>
+            <br>
+            <button (click)="setType(0)">날짜 지정</button>
+            <button (click)="setType(1)">요일 지정</button>
+            <button (click)="setType(2)">매일 반복</button>
+            <br>
+            예약명:<input type="text">
+        </div>
+        <div class="calander" *ngIf="checkType()">
+            <table >
+                <tr>
+                    <th><input type="button" (click)=calculate(-1) value='<'></th>
+                    <th colspan="5">{{getMonthName(month)}} {{year}}</th>
+                    <th><input type="button" (click)=calculate(1) value='>'></th>
+                </tr>
+                <tr>
+                    <td>Sun</td>
+                    <td>Mon</td>
+                    <td>Tue</td>
+                    <td>Wed</td>
+                    <td>Thu</td>
+                    <td>Fri</td>
+                    <td>Sat</td>
+                </tr>
+                <tr *ngFor="let week of calander;">
+                    <td *ngFor="let day of week"><span *ngIf="day!=0">{{day}}</span></td>                        
+                </tr>
+            </table>
+        </div>
+        <br>
+        <br>
+        <select [(ngModel)]="hour">
+            <option *ngFor="let i=index;">{{i}}</option>
+        </select>
+        <div>
+            <a class="select" href="/vm_snapshot/schedule#">예약</a>
+            <a class="select" href="/vm_snapshot/schedule#">닫기</a>
+        </div>
+    </div>
+</div>

@@ -3,11 +3,12 @@ import {VM} from'../Data/vm';
 import {Server} from '../Data/server';
 import {SelectedServer} from '../SelectedServer-service';
 import {State} from '../Data/vm';
-
+import {Scheduler} from './SnapShotCreate';
 @Component({
     selector: 'snapshot-schedule',
     templateUrl:'./app.SnapShotSchedule.html',
-	styleUrls: ['./Snapshot.css']
+    styleUrls: ['./Snapshot.css'],
+    providers:[Scheduler]
 })
 export class SnapShotSchedule{
     selectedVM : VM[];
@@ -75,6 +76,5 @@ export class SnapShotSchedule{
         });
         while(this.selectedVM.length!=0)
             this.selectedVM.pop();
-
     }
 }

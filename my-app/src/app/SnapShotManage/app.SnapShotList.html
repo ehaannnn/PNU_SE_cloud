@@ -1,5 +1,5 @@
 <div class="body">
-    <p style="padding-left:20px; font-size:30px">{{selected.server.name}}</p>
+    <p style="padding-left:20px; font-size:30px" >{{selected.server.name}}</p>
     <br>
      <div style="width: 75%; position:absolute; left:50%; margin-left:-47%">
          <div style="position:absolute; right:0px;">
@@ -9,14 +9,14 @@
         <br>
         <table style="margin-top:5px">
             <tr style="background-color:black; color:white;border:2px; border-radius:5px;">
-                <th style="width:1%"><input type="checkbox"  ></th>
+                <th style="width:1%"><input type="checkbox" [(ngModel)]=allCheck (click)=allChecking()></th>
                 <th style="width:5%;text-align: center;">VM명</th>
                 <th style="width:7%;text-align: center;">OS</th>
                 <th style="width:7%;text-align: center;">상태</th>
                 <th >스냅샷 목록</th>
             </tr>
-            <tr *ngFor='let vm of selected.server.vmlist' >
-                <td style="text-align: center;"><input type="checkbox" (click)=addSelectedVM(vm) ></td>
+            <tr *ngFor='let vm of selected.server.vmlist let i=index' >
+                <td style="text-align: center;"><input type="checkbox" [(ngModel)]="checkBox[i]" (change)=addSelectedVM(vm,i) ></td>
                 <td style="text-align: center;">{{vm.name}}</td>
                 <td style="text-align: center;">{{vm.os}}</td>
                 <td style="text-align: center;">{{NtoS(vm.state)}}</td>

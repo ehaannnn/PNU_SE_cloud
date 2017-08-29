@@ -8,17 +8,19 @@ import { VMListView } from'./app.VMList';
 import {VMSnapShot} from './app.SnapShotList';
 import {SnapShotMain} from './SnapShotMain';
 import {SnapShotSchedule} from './app.SnapShotSchedule';
+import {Scheduler} from './SnapShotCreate';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    SnapShotRoutingModule
+    SnapShotRoutingModule    
   ],
   declarations: [
     VMListView,
     SnapShotMain,
     VMSnapShot,
-    SnapShotSchedule
+    SnapShotSchedule,
+    Scheduler
   ],
 })
 export class SnapShotModule {}
