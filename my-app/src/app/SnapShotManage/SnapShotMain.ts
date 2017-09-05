@@ -15,5 +15,6 @@ import { VMSnapShot } from './app.SnapShotList';
 
 export class SnapShotMain { 
   constructor(private farmList:FarmList,private serverService:ServerList,public HDaaS:HDaasVMListService,public OpenStack:OpenStackVMListService){
+    
   }
 }

@@ -3,7 +3,7 @@ import {VM} from'../Data/vm';
 import {Server} from '../Data/server';
 import {SelectedServer} from '../SelectedServer-service';
 import {State} from '../Data/vm';
-import {VMListService} from'./SnapShotHttp';
+import {URLService} from'./SnapShotURL.service';
 
 @Component({
     selector: "vm-snapshot",
@@ -16,7 +16,7 @@ export class VMSnapShot{
     selectedSnapshot: any[];
     checkBox:boolean[];
     allCheck:boolean;
-    constructor(public selected:SelectedServer ,public http:VMListService){
+    constructor(public selected:SelectedServer ,public http:URLService){
         VMSnapShot.last = this;
         this.selectedVM = new Array<VM>();
         this.checkBox = new Array<boolean>(256);
@@ -25,11 +25,12 @@ export class VMSnapShot{
         for(i=0;i<this.checkBox.length;++i)
             this.checkBox[i]=false;
         let wait:boolean = false;
-        http._promise().then(function(text) {
-            console.log(text);
-        }, function(error) {
-            console.log(error);
-        });
+        if(selected.server.vmlist!=null)
+            console.log(selected.server.vmlist.length);
+        window.setTimeout(http.getInstanceList("http://164.125.70.18:50003",selected),3000);
+        if(selected.server.vmlist!=null)
+            console.log(selected.server.vmlist.length);
+        
     }
     static reset(src:VMSnapShot){
         if(src== null)

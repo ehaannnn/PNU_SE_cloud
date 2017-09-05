@@ -21,8 +21,8 @@ export class VMListView{
         this.farms = farmList._farm;
         this.ViewOfServer = true;
 		this.farms[0].servers = serverService._servers;
-		this.farms[0].servers[0].vmlist=OpenStack._openStackVMList;
-		this.farms[0].servers[1].vmlist=HDaaS._hDaaSVMList;
+		// this.farms[0].servers[0].vmlist=OpenStack._openStackVMList;
+		// this.farms[0].servers[1].vmlist=HDaaS._hDaaSVMList;
         selected.server=this.farms[0].servers[0];
     }
     selectServer(select: Server){
