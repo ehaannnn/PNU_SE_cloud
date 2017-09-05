@@ -4,7 +4,7 @@ export enum State{
 	PAUSE = 3
 }
 export class VM{
-    name: String;
-    os: String;
-    state: State;
+    public name: String;
+    public os: String;
+    public state: State;
 } 
