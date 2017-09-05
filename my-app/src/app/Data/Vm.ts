@@ -4,7 +4,18 @@ export enum State{
 	PAUSE = 3
 }
 export class VM{
-    name: String;
-    os: String;
+    name: string;
+    os: string;
     state: State;
+    CPU : number;
+    MEM : number;
+    DISK : number;
+    constructor(name : string, os:string, state:State, CPU: number, MEM:number, DISK:number) {
+        this.name = name;
+        this.os = os;
+        this.state = state;
+        this.CPU = CPU;
+        this.MEM = MEM;
+        this.DISK = DISK;
+    }
 } 
