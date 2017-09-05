@@ -2,7 +2,7 @@ import { ModalModule } from 'ng2-modal-dialog/modal.module';
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
+import { HttpClientModule }    from '@angular/common/http';
 import {AppRoutingModule,appRoutingProviders} from './app.routing';
 import { Main }  from './app.Main';
 import { VMManagerModule } from './VMManager/VMRouting.module';
@@ -21,12 +21,12 @@ import { MenuDetailComponent } from './menu-detail.component';
 import { VMAddModalComponent } from './VMManager/VMAddModal.component';
 
 import {SelectedServer} from './SelectedServer-service';
-
+import {Token} from './Token';
 @NgModule({
-  imports:      [ BrowserModule, AppRoutingModule,ModalModule, VMManagerModule ],
+  imports:      [ HttpClientModule,BrowserModule, AppRoutingModule,ModalModule, VMManagerModule ],
   declarations: [ Main , MenuDetailComponent, testMain, VMAddModalComponent ],
   bootstrap:    [ Main ],
-  providers:[ appRoutingProviders, ServerList,FarmList,HDaasVMListService,OpenStackVMListService,SelectedServer]
+  providers:[ appRoutingProviders, ServerList,FarmList,HDaasVMListService,OpenStackVMListService,SelectedServer,Token]
 })
 export class AppModule {
 

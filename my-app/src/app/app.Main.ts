@@ -8,7 +8,7 @@ import { OpenStackVMListService} from './data/vm-mock.service';
 import { SelectedServer } from './SelectedServer-service';
 
 import { Menu } from './menu';
-
+import {Token} from './Token';
 
 const MENUS: Menu[] = [
 	{name: '서버관리', subMenu: ['기본관리','세부관리'], subMenuLink: ['/vm_manage/Farm','/vm_manage_detail']},
@@ -25,7 +25,13 @@ const MENUS: Menu[] = [
 })
 
 export class Main { 
-  constructor(){}
+  constructor(token : Token) {
+    token._promise().then(function(text) {
+      console.log(text);
+  }, function(error) {
+      console.log(error);
+  });
+  }
   
   menus = MENUS;
   selectedMenu: Menu = MENUS[0];
