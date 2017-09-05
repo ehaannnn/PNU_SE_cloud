@@ -5,6 +5,7 @@ import { VMListView } from'./app.VMList';
 import {VMSnapShot} from './app.SnapShotList';
 import {SnapShotMain} from './SnapShotMain';
 import {SnapShotSchedule} from './app.SnapShotSchedule';
+import {SnapShotCheck} from './SnapShotCheck';
 
 const snapShotRoutes: Routes = [
   {
@@ -17,7 +18,13 @@ const snapShotRoutes: Routes = [
       },
       {
         path:'schedule',
-        component:SnapShotSchedule
+        component:SnapShotSchedule,
+        children:[
+          {
+          path: 'reservation',
+          component: SnapShotCheck,
+          }
+        ]
       }
     ]
   }

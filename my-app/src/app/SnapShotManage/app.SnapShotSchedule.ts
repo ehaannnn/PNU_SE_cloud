@@ -11,9 +11,11 @@ import {Scheduler} from './SnapShotCreate';
     providers:[Scheduler]
 })
 export class SnapShotSchedule{
+    public static last:SnapShotSchedule;
     selectedVM : VM[];
     selectedSnapshot: any[];
     constructor(public selected:SelectedServer){
+        SnapShotSchedule.last = this;
         this.selectedVM = new Array<VM>();
     }
     NtoS(state: State){
