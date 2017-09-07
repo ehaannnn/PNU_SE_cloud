@@ -17,7 +17,14 @@
                 <th style="width:7%;text-align: center;">IP주소</th>
                 <th style="width:7%;text-align: center;">Floating 할당여부</th>
             </tr>
-            
+            <tr *ngFor='let vm of selected.server.vmlist' >
+                <td style="text-align: center;">{{vm.name}}</td>
+                <td style="text-align: center;">{{vm.os}}</td>
+                <td style="text-align: center;">{{NtoS(vm.state)}}</td>
+                <td style="text-align: center;">{{vm.CPU}}</td>
+                <td style="text-align: center;">{{vm.MEM}}</td>
+                <td style="text-align: center;">{{vm.DISK}}</td>
+            </tr>
         </table>
         
     </div>

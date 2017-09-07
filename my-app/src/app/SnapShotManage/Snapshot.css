@@ -34,7 +34,16 @@ input.leftMenuItem{
   background-color:rgba(0, 0, 0, 0.00);
   border:none;
 }
-
+button.SnapshotICON{
+  background-color: white;
+  color: black;
+  border: 1px;
+  border-color:black;
+  margin-left: 5px;
+  margin-top: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
 div.body{
   position: relative;
   left: 250px;
