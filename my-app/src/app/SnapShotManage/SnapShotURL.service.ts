@@ -17,9 +17,10 @@ export class URLService {
     private instanceHeader = new HttpHeaders();
     public instanceList: Promise<void>;
     
-    private imageURL: string ="/v2.1/images/detail";
+    private snapshotURL: string ="/v2.1/os-snapshots";
 
-    private deleteIMGURL: string='/v2/images/';
+    private createIMGURL: string='/v2.1/os-snapshots';
+    private deleteIMGURL: string='/v2.1/os-snapshots/';
 
     private test;
     constructor(private http: HttpClient) {
@@ -45,13 +46,13 @@ export class URLService {
                 var instanceListNum: number = response["servers"].length;
                 selected.server.vmlist = new Array<VM>(instanceListNum);
                 for (; idx < instanceListNum; ++idx) {
-                    selected.server.vmlist[idx] = this.getInstanceInfo(url, this.instanceList[idx]["id"],  idx);
-                    this.getSnapshots(url,selected,idx);
+                    selected.server.vmlist[idx] = this.getInstanceInfo(this.instanceList[idx]["id"],  idx);
                 }
                 console.log(this.instanceList['length']);
+                this.getSnapshots(url,selected);
             }).catch(response => console.log(response));
     }
-    getInstanceInfo(url: string, id: string, idx: number) {
+    getInstanceInfo(id: string, idx: number) {
         let st: State;
         if (this.instanceList[idx]['status'] === 'ACTIVE')
             st = State.ON;
@@ -60,45 +61,58 @@ export class URLService {
         else
             st = State.PAUSE;
         let name: string = this.instanceList[idx]["name"];
+        let Vid: string = this.instanceList[idx]["os-extended-volumes:volumes_attached"][0]['id']; 
         console.log(this.instanceList[idx]);
         console.log(this.instanceList[idx]['status']);
-        return new VM(name, "", st, 0, 0, 0);
+        return new VM(name, "", st, 0, 0, 0,Vid);
     }
-    getSnapshots(url:string,selected: SelectedServer,idx:number){
-        this.http.get(url + this.imageURL, { headers: this.instanceHeader.set("X-Auth-Token", Token.id) })
+    getSnapshots(url:string,selected: SelectedServer){
+        this.http.get(url + this.snapshotURL, { headers: this.instanceHeader.set("X-Auth-Token", Token.id) })
         .toPromise()
         .then(response => {
             let idxx = 0;
-            this.instanceList = response["images"];
-            var instanceListNum: number = response["images"].length;
-            selected.server.vmlist[idx].snapshots = new Array<SnapShot>();
+            this.instanceList = response["snapshots"];
+            var instanceListNum: number = response["snapshots"].length;
+            for(let idx=0;idx<selected.server.vmlist.length;++idx){
+                 selected.server.vmlist[idx].snapshots = new Array<SnapShot>();
+            }
+        
             for (; idxx < instanceListNum; ++idxx) {
-                try{
-                    console.log(this.instanceList[idxx]['metadata']['block_device_mapping'][0]['source_type']);
-                }catch(expiredToken){
-                    continue;
+                let VID = this.instanceList[idxx]['volumeId'];
+                let vmIDX=0;
+                for(;vmIDX<selected.server.vmlist.length&&!(selected.server.vmlist[vmIDX].volumeID===VID);++vmIDX);
+                if(vmIDX<selected.server.vmlist.length){
+                    let snapshot = new SnapShot();
+                    snapshot.id=this.instanceList[idxx]['id'];
+                    snapshot.name=this.instanceList[idxx]['displayName'];
+                    snapshot.created=this.instanceList[idxx]['createdAt'];
+                    selected.server.vmlist[vmIDX].snapshots.push(snapshot);
+                    console.log(snapshot.name);
                 }
-                let snapshot = new SnapShot();
-                snapshot.id=this.instanceList[idxx]['id'];
-                snapshot.name=this.instanceList[idxx]['name'];
-                snapshot.created=this.instanceList[idxx]['created'];
-                selected.server.vmlist[idx].snapshots.push(snapshot);
-                console.log(snapshot.name);
             }
             console.log(this.instanceList['length']);
         }).catch(response => console.log(response));
     }
 
-    createSnapshot(){
-
-    }
-    deleteSnapshot(url:string, id:string){
-        this.http.get(url + this.deleteIMGURL+id, { headers: this.instanceHeader.set("X-Auth-Token", Token.id) })
+    createSnapshot(url:string,id:string){
+        this.http.post(url + this.createIMGURL, { headers: this.instanceHeader.set("X-Auth-Token", Token.id),
+        body:{
+            snapshot: {
+                volume_id: id
+             }
+        } })
         .toPromise()
         .then(response => {
-            console.log("delete\n"+response);
+            console.log("create\n");
+            console.log(response);
         }).catch(response => console.log(response));
     }
-
-
+    deleteSnapshot(url:string, id:string){
+        this.http.delete(url + this.deleteIMGURL+id, { headers: this.instanceHeader.set("X-Auth-Token", Token.id) })
+        .toPromise()
+        .then(response => {
+            console.log("delete\n");
+            console.log(response);
+        }).catch(response => console.log(response));
+    }
 }

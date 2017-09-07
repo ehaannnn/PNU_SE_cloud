@@ -1,0 +1,28 @@
+  <p style="padding-left:20px; font-size:30px">{{_loginService._admin.id}}</p>
+  <br>
+   <div style="width: 75%; position:absolute; left:50%; margin-left:-47%">
+       <div style="position:absolute; right:0px;">
+      </div>
+      <button (click)="userCreate()">사용자 생성</button>
+      <button (click)="userDelete()">사용자 삭제</button>
+      <br>
+      <table style="margin-top:5px">
+          <tr style="background-color:black; color:white;border:2px; border-radius:5px;">
+              <th style="width:5%;text-align: center;">사용자 ID</th>
+              <th style="width:7%;text-align: center;">사용자 이름</th>
+              <th style="width:7%;text-align: center;">접속 상태</th>
+              <th style="width:7%;text-align: center;">개인용 VM</th>
+              <th style="width:7%;text-align: center;">삭제</th>
+          </tr>
+          <tr *ngFor='let tmpUser of _loginService._admin.users' >
+              <td style="text-align: center;">{{tmpUser.id}}</td>
+              <td style="text-align: center;">{{tmpUser.name}}</td>
+              <td style="text-align: center;">{{tmpUser.state}}</td>
+              <td style="text-align: center;">{{tmpUser.personalVM}}</td>
+              <td style="text-align: center;">  <input type='checkbox' [(ngModel)]="tmpUser.isDeleted" value={{tmpUser.id}} placeholder="" /></td>
+          </tr>
+      </table>
+      
+      
+      
+  </div>

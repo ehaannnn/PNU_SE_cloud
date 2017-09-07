@@ -10,11 +10,13 @@ import { SelectedServer } from './SelectedServer-service';
 import { Menu } from './menu';
 import {Token} from './Token';
 
+import {LoginService} from './login/login.service';
+
 const MENUS: Menu[] = [
 	{name: '서버관리', subMenu: ['기본관리','세부관리'], subMenuLink: ['/vm_manage/Farm','/vm_manage_detail']},
 	{name: '통계/분석', subMenu: [], subMenuLink: ['','']},
 	{name: '백업/복구', subMenu: ['스냅샷 관리','스냅샷 예약 관리'], subMenuLink: ['/vm_snapshot/manage']},
-	{name: '사용자 관리', subMenu: [], subMenuLink: ['','']},
+	{name: '사용자 관리', subMenu: [], subMenuLink: ['usermanage','']},
 ];
 
 @Component({
@@ -25,7 +27,9 @@ const MENUS: Menu[] = [
 })
 
 export class Main { 
-  constructor(token : Token) {
+  login:boolean;
+  constructor(token : Token, private loginService:LoginService) {
+    this.login=true;
     token._promise().then(function(text) {
       console.log(text);
   }, function(error) {
@@ -41,5 +45,9 @@ export class Main {
 	  this.selectedMenu = menu;
 	  //this.subMenuindex = ;
   }
-  
+  islogined(){
+    if(this.loginService._admin!=null)
+      console.log("true");
+    return this.loginService._admin!=null;
+  }
 }

@@ -35,7 +35,7 @@ export class VDIComponent {
                         }
                     });
 
-                    let VM_tmp: VM = new VM(instance_name, "", State.ON, _CPU, _RAM, disk_size);
+                    let VM_tmp: VM = new VM(instance_name, "", State.ON, _CPU, _RAM, disk_size,"");
 
                     this.selected.server.vmlist.push(VM_tmp);
                     console.log(this.selected.server.vmlist[0].CPU);

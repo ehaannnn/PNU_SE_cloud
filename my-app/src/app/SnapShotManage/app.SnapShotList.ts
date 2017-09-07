@@ -65,14 +65,13 @@ export class VMSnapShot{
         else if(state==State.PAUSE)
             return "PAUSE";
     }
-    cancle(list: VM[], select: VM){
-        
-    }
 
     createSnapShot(){
         if(this.selectedVM.length==0)
             alert("선택된 VM이 존재하지 않습니다");
-        alert("api 이용하여 스냅삿 추가 할것");
+        this.selectedVM.forEach(element => {
+            this.http.createSnapshot("http://164.125.70.18:50003",element.volumeID);
+        });
     }
     addSelectedVM(select:VM, i:number){
         if(this.checkBox[i]){
@@ -86,7 +85,8 @@ export class VMSnapShot{
         }
     }
     addSnapShot(select: SnapShot){
-        console.log(SnapShot.name);
+        console.log(select.name);
+        console.log(select.id);
         // 선택된 Snapshot이 이미 등록되어있는지 확인 후 삭제 목록에 추가
         if(!this.selectedSS.find(ss=>ss.name ===select.name)){
             this.selectedSS.push(select);
@@ -112,7 +112,7 @@ export class VMSnapShot{
     }
 
     deleteConfirm(){
-        if(this.selectedVM.length==0)
+        if(this.selectedSS.length==0)
             alert("선택된 스냅샷이 존재하지 않습니다");
         else{
             if(confirm("스냅샷들을 삭제하시겠습니까?")==true){
@@ -127,7 +127,7 @@ export class VMSnapShot{
         while(this.selectedVM.length!=0)
             this.selectedVM.pop();
     }
-    deleteSnapShot(snapshot:SnapShot){
+    deleteSnapShot(snapshot:SnapShot){        
         this.http.deleteSnapshot("http://164.125.70.18:50003",snapshot.id);
     }
 }
