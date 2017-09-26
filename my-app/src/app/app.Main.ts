@@ -26,11 +26,18 @@ const MENUS: Menu[] = [
 
 export class Main { 
   constructor(token : Token) {
-    token._promise().then(function(text) {
+    token._promise().then(function (text) {
       console.log(text);
-  }, function(error) {
+    }, function (error) {
       console.log(error);
-  });
+    });
+
+    token._getPromise().then(function (text) {
+      console.log(text);
+    }, function (error) {
+      console.log(error);
+    });
+
   }
   
   menus = MENUS;
