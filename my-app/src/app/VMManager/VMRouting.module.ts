@@ -4,21 +4,24 @@ import { CommonModule }   from '@angular/common';
 import { VMRoutingModule } from './VMRouting';
 import { HttpClientModule }    from '@angular/common/http';
 
+import {  HttpModule } from '@angular/http';
+
 import {VMManageRight} from './app.VMManageRight';
 import {VMManageLeft} from './app.VMManageLeft';
 import {VDIComponent} from './VDI.component';
-import {Compute_Instance} from './Compute_Instance';
+import {Compute_Instance, HDaaS_VMList} from './Compute_Instance';
 
 @NgModule({
   imports: [
     HttpClientModule,
     CommonModule,
     FormsModule,
-    VMRoutingModule
+    VMRoutingModule,
+    HttpModule
   ],
   declarations: [
     VMManageRight,VMManageLeft,VDIComponent
   ],
-  providers: [Compute_Instance],
+  providers: [Compute_Instance,HDaaS_VMList],
 })
 export class VMManagerModule {}

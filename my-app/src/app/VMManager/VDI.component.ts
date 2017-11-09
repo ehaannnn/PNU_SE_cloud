@@ -4,7 +4,7 @@ import { Server } from '../Data/server';
 import { SelectedServer } from '../SelectedServer-service';
 import { State } from '../Data/vm';
 
-import { Compute_Instance } from './Compute_Instance';
+import { Compute_Instance, HDaaS_VMList } from './Compute_Instance';
 
 @Component({
     selector: 'VDI',
@@ -13,7 +13,7 @@ import { Compute_Instance } from './Compute_Instance';
 })
 
 export class VDIComponent {
-    constructor(public selected: SelectedServer, private ci_server: Compute_Instance, private ci_flavor: Compute_Instance,private HDaaS_VMList: Compute_Instance) {
+    constructor(public selected: SelectedServer, private hdaasVMList: HDaaS_VMList,private ci_server: Compute_Instance, private ci_flavor: Compute_Instance,private HDaaS_VMList: Compute_Instance) {
         this.selected.server.vmlist = new Array<VM>();
         let server_name = selected.server.name;
         console.log(server_name);
@@ -52,9 +52,9 @@ export class VDIComponent {
             });
         }
         else if (server_name == "HDaaS") {
-
-            HDaaS_VMList.HDaaS_get_VMList().then(text => {
+            hdaasVMList.HDaaS_get_VMList().then(text=> {
                 let i: number = 0;
+                console.log("여기는?");
                 console.log(text);
                 for (; i < text['VMList'].length; ++i) {
                     let instance_name = text['VMList'][i]['vmMasterName'];
@@ -67,13 +67,21 @@ export class VDIComponent {
 
                     this.selected.server.vmlist.push(VM_tmp);
                     console.log(this.selected.server.vmlist[0].CPU);
-                    
                 }
+            }, function (error) {
+                console.log(error); 
+            });
+            /*
+            HDaaS_VMList.HDaaS_get_VDIId().then(vdi_id => {
+                
+                console.log("여기로?");
+                console.log(vdi_id);
 
+                
 
             }, function (error) {
                 console.log(error);
-            });
+            });*/
         }
 
     }

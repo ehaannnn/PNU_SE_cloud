@@ -38,17 +38,13 @@ export class Token{
         });
     };
 
-    _getPromise = function() {
+	_getPromise = function() {
         return new Promise(function(resolve, reject) {
             window.setTimeout(function () {
                 Token.http.get('https://164.125.70.15:8038/HDaaSWeb/JSONTest/login?id=master&pass=Se35363650A!').subscribe(data => {
                     // Read the result field from the JSON response.
                     console.log(data['message']);
-                    Token.http.get("https://164.125.70.15:8038/HDaaSWeb/JSONTest/VM").subscribe(data => {
-                        // Read the result field from the JSON response.
-                        console.log(data);
-                        //console.log(data['VMList']);
-                    });
+                    
                 });
             }, 3000);
         });
