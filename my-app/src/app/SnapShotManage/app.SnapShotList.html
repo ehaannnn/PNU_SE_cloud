@@ -1,13 +1,12 @@
 <div class="body">
-    <p style="padding-left:20px; font-size:30px" >{{selected.server.name}}</p>
-    <br>
+    <p style=" padding-left:40px; font-size:50px" >{{selected.server.name}}</p>
      <div style="width: 75%; position:absolute; left:50%; margin-left:-47%">
-         <div style="position:absolute; right:0px;">
-            <input  type="button" value="스냅샷 생성" (click)=createSnapShot()>
-            <input  type="button" value="스냅샷 삭제" (click)=deleteConfirm()>     
+         <div style="position:absolute; right:5px;top:0px">
+            <input  class ='button' type="button" value="스냅샷 생성" (click)=createSnapShot()>
+            <input  class ='button' type="button" value="스냅샷 삭제" (click)=deleteConfirm()>     
         </div>
         <br>
-        <table style="margin-top:5px">
+        <table style="margin-top:8px">
             <tr style="background-color:black; color:white;border:2px; border-radius:5px;">
                 <th style="width:1%"><input type="checkbox" [(ngModel)]=allCheck (click)=allChecking()></th>
                 <th style="width:5%;text-align: center;">VM명</th>
@@ -23,10 +22,5 @@
                 <td> <button class="SnapshotICON" *ngFor='let snapshot of vm.snapshots' (click)='addSnapShot(snapshot)' >{{snapshot.name}}</button></td>
             </tr>
         </table>
-        <ul>
-            <li *ngFor ='let vm of selectedVM'>
-                {{vm.name}}
-            </li>
-        </ul>
     </div>
 </div>

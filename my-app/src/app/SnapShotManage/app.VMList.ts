@@ -8,6 +8,7 @@ import {SelectedServer} from '../SelectedServer-service';
 import { HDaasVMListService} from '../data/vm-mock.service';
 import { OpenStackVMListService} from '../data/vm-mock.service';
 import { VMSnapShot } from './app.SnapShotList';
+import { MENUS } from '../app.Main';
 @Component({
     selector: 'vm-list',
     templateUrl:'./app.VMList.html',
@@ -24,6 +25,10 @@ export class VMListView{
 		// this.farms[0].servers[0].vmlist=OpenStack._openStackVMList;
 		// this.farms[0].servers[1].vmlist=HDaaS._hDaaSVMList;
         selected.server=this.farms[0].servers[0];
+    }
+    changeSubMenu(idx:number){
+        MENUS[2].selectedIDX=idx;
+        console.log(MENUS[2].selectedIDX);
     }
     selectServer(select: Server){
         VMSnapShot.reset(VMSnapShot.last);   

@@ -12,7 +12,7 @@ import {SelectedServer} from '../SelectedServer-service';
 export class VMManageRight{
     private vm_list : Array<VM>;
 
-    constructor(private selectedServer : SelectedServer, private ci_server : Compute_Instance,private ci_flavor : Compute_Instance) {
+    constructor(private selectedServer : SelectedServer, private ci_server : Compute_Instance,private ci_flavor : Compute_Instance, private HDaaS_VMList: Compute_Instance) {
         //VMManageRight.vm_list = new Array<VM>();
              
         

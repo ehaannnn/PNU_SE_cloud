@@ -58,11 +58,11 @@ ul.leftMenuList{
   color:black;
 }
 input.leftMenuItem{
+  font-size:20px;
   cursor: pointer;
   background-color:rgba(0, 0, 0, 0.00);
   border:none;
 }
-
 div.body{
   position: relative;
   left: 250px;

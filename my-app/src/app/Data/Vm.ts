@@ -11,7 +11,7 @@ export class VM{
     CPU : number;
     MEM : number;
     DISK : number;
-    constructor(name : string, os:string, state:State, CPU: number, MEM:number, DISK:number,VID:string) {
+    constructor(name : string, os:string, state:State, CPU: number, MEM:number, DISK:number,VID:string="") {
         this.name = name;
         this.os = os;
         this.state = state;

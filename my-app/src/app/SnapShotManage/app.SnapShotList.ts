@@ -69,7 +69,9 @@ export class VMSnapShot{
     createSnapShot(){
         if(this.selectedVM.length==0)
             alert("선택된 VM이 존재하지 않습니다");
+       
         this.selectedVM.forEach(element => {
+            console.log(element.volumeID);
             this.http.createSnapshot("http://164.125.70.18:50003",element.volumeID);
         });
     }

@@ -1,12 +1,14 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="leftMenu"> 
-            <input class="snapButton" type="button" routerLink="./manage" value="스냅샷 관리">
-            <input class="snapButton" type="button" routerLink="./schedule" value="스냅샷 예약 관리">
+            <input class="snapButton" type="button" routerLink="./manage" value="스냅샷 관리" (click)="changeSubMenu(0)">
+            <input class="snapButton" type="button" routerLink="./schedule" value="스냅샷 예약 관리" (click)="changeSubMenu(1)">
     <div *ngFor='let f of farms'>
             <ul class="leftMenuList">
-                <input type="button" (click)="toggleServer(ViewOfServer)"class="leftMenuItem" value={{f.name}}>
+                <i style="font-size:24px" class="fa">&#xf187;</i><input type="button" (click)="toggleServer(ViewOfServer)"class="leftMenuItem" value={{f.name}}>
                 <div *ngIf="ViewOfServer">
                     <div *ngFor='let server of f.servers' style="margin-left:25px">
-                        <input type="button" (click)="selectServer(server)"class="leftMenuItem" value={{server.name}}>
+                        <i style="font-size:24px" class="fa">&#xf233;</i><input type="button" (click)="selectServer(server)"class="leftMenuItem" value={{server.name}}>
                     </div>
                 </div>
             </ul>

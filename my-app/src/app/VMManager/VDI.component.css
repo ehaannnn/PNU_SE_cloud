@@ -43,7 +43,6 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
 }
-
 div.leftMenu{
   background-color: #ededed;
   position: absolute;
@@ -52,7 +51,12 @@ div.leftMenu{
   height: 100%;
   border-right: 3px solid #000000;
 }
-
+input.leftMenuItem{
+  font-size:20px;
+  cursor: pointer;
+  background-color:rgba(0, 0, 0, 0.00);
+  border:none;
+}
 input.snapButton{
   width: 45%;
   position: relative;
@@ -66,11 +70,6 @@ input.snapButton{
 }
 ul.leftMenuList{
   color:black;
-}
-input.leftMenuItem{
-  cursor: pointer;
-  background-color:rgba(0, 0, 0, 0.00);
-  border:none;
 }
 
 div.body{

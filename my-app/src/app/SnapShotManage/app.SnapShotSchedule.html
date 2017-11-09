@@ -1,26 +1,26 @@
 <div class="body">
-    <p style="padding-left:20px; font-size:30px">{{selected.server.name}}</p>
-    <br>
+    <p style=" padding-left:40px; font-size:50px" >{{selected.server.name}}</p>
      <div style="width: 75%; position:absolute; left:50%; margin-left:-47%">
-         <div style="position:absolute; right:0px;">
+        <div style="position:absolute; right:5px;top:0px">
             <schedule></schedule>
-            <input  type="button" value="스냅샷 예약 확인" routerLink="./reservation">     
+            <input  class ='button' type="button" value="스냅샷 예약 확인" routerLink="./reservation">     
+            
         </div>
         <br>
-        <table style="margin-top:5px">
+        <table style="margin-top:8px">
             <tr style="background-color:black; color:white;border:2px; border-radius:5px;">
-                <th style="width:1%"><input type="checkbox"  ></th>
+                <th style="width:1%"><input type="checkbox" [(ngModel)]=allCheck (click)=allChecking()></th>
                 <th style="width:5%;text-align: center;">VM명</th>
                 <th style="width:7%;text-align: center;">OS</th>
                 <th style="width:7%;text-align: center;">상태</th>
                 <th >스냅샷 목록</th>
             </tr>
-            <tr *ngFor='let vm of selected.server.vmlist' >
-                <td style="text-align: center;"><input type="checkbox" (click)=addSelectedVM(vm) ></td>
+            <tr *ngFor='let vm of selected.server.vmlist let i=index' >
+                <td style="text-align: center;"><input type="checkbox" [(ngModel)]="checkBox[i]" (click)=addSelectedVM(vm) ></td>
                 <td style="text-align: center;">{{vm.name}}</td>
                 <td style="text-align: center;">{{vm.os}}</td>
                 <td style="text-align: center;">{{NtoS(vm.state)}}</td>
-                <td>none</td>
+                <td> <button class="SnapshotICON" *ngFor='let snapshot of vm.snapshots'  >{{snapshot.name}}</button></td>
             </tr>
         </table>
     </div>

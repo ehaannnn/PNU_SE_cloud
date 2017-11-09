@@ -12,6 +12,7 @@ export class Token{
 
     constructor( http: HttpClient){
         Token.http = http;
+        
     }
     _promise = function () {
         return new Promise(function (resolve, reject) {
@@ -33,6 +34,18 @@ export class Token{
                     }
                     );
 
+            }, 3000);
+        });
+    };
+
+	_getPromise = function() {
+        return new Promise(function(resolve, reject) {
+            window.setTimeout(function () {
+                Token.http.get('https://164.125.70.15:8038/HDaaSWeb/JSONTest/login?id=master&pass=Se35363650A!').subscribe(data => {
+                    // Read the result field from the JSON response.
+                    console.log(data['message']);
+                    
+                });
             }, 3000);
         });
     };

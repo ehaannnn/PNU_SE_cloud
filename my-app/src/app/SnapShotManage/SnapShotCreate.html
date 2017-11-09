@@ -1,16 +1,16 @@
-<a href="/vm_snapshot/schedule#open">스냅샷 생성</a>
+<a class='button' href="/vm_snapshot/schedule#open">스냅샷 예약</a>
 <div class="snapshot_schedule" id="open">
-    <div>
-        <div style="width:100%;margin:auto;">
-            <span style="font-size:25px">스냅샷 예약</span>
+    <div style="width:auto;height:auto;">
+        <div>
+            <span style="font-size:25px; ">스냅샷 예약</span>
             <br>
-            <button (click)="setType(0)">날짜 지정</button>
+            <button style="margin: 5px;" (click)="setType(0)">날짜 지정</button>
             <button (click)="setType(1)">요일 지정</button>
             <button (click)="setType(2)">매일 반복</button>
             <br>
-            예약명:<input type="text" [(ngModel)]="name">
+            <span stype="margin: 0px 0px 0px 15px;">예약명:<input type="text" style="margin-right:5px;" [(ngModel)]="name"></span>
         </div>
-        <div class="calander" *ngIf="checkType()">
+        <div style="padding: 5px;" *ngIf="checkType()">
             <table >
                 <tr>
                     <th><input type="button" (click)=calculate(-1) value='<'></th>

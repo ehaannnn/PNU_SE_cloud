@@ -1,18 +1,17 @@
-<div *ngIf="loginService._admin!=null">
-	<div class="mainMenu">
-		<ul class="menus">
-			<li *ngFor="let item of menus"
-				[class.selected]="item === selectedMenu" 
-				(click)="onClick(item, 0)">
-				<a routerLink={{item.subMenuLink[0]}} >{{item.name}}</a>
-				<!--<li *ngFor = "let sub of item.subMenu"></li>-->
-			</li>
-		</ul>
-		
-	</div>
-	<div>
-		<menu-detail [menu]="selectedMenu"></menu-detail>
-	</div>
+<div class="mainMenu">
+	<ul class="menus">
+		<li *ngFor="let item of menus"
+			[class.selected]="item === selectedMenu" 
+			(click)="onClick(item, 0)">
+			<a routerLink={{item.subMenuLink[0]}} >{{item.name}}</a>
+			<!--<li *ngFor = "let sub of item.subMenu"></li>-->
+		</li>
+	</ul>
+	
+</div>
+<div>
+	<menu-detail [menu]="selectedMenu"></menu-detail>
 </div>
 
-<router-outlet></router-outlet>
+<router-outlet>
+</router-outlet>
