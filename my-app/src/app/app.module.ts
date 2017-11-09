@@ -22,11 +22,16 @@ import { VMAddModalComponent } from './VMManager/VMAddModal.component';
 
 import {SelectedServer} from './SelectedServer-service';
 import {Token} from './Token';
+import { ChartsModule } from 'ng2-charts';
+
+import {LineChartDemoComponent} from "./Chart/chart.component";
+import {ChartService} from "./Chart/chart.service";
+import {ChartModule} from "./Chart/ChartRouting.module";
 @NgModule({
-  imports:      [ HttpClientModule,BrowserModule, AppRoutingModule,ModalModule, VMManagerModule ],
-  declarations: [ Main , MenuDetailComponent, testMain, VMAddModalComponent ],
+  imports:      [ HttpClientModule,BrowserModule, AppRoutingModule,ModalModule, VMManagerModule,ChartsModule ],
+  declarations: [ Main , MenuDetailComponent, testMain, VMAddModalComponent, ],
   bootstrap:    [ Main ],
-  providers:[ appRoutingProviders, ServerList,FarmList,HDaasVMListService,OpenStackVMListService,SelectedServer,Token]
+  providers:[ appRoutingProviders, ServerList,FarmList,HDaasVMListService,OpenStackVMListService,SelectedServer,Token,ChartService]
 })
 export class AppModule {
 
