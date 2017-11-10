@@ -3,10 +3,10 @@ table {
   }
 
   .list {
-    width: 95%; 
+    width: 50%; 
     position:absolute; 
-    
-    left:15px; 
+    left:50%; 
+    margin-left:-47%
   }
   tr{
     border:2px;
@@ -28,4 +28,15 @@ table {
     text-align: center;
     border:1px solid #dddddd;
     border-collapse:collapse
+  }
+  button{
+    width: 115px;
+    background: rgb(100, 100, 100);
+    padding: 3px;
+    text-align: center;
+    border: 1px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
   }

@@ -25,6 +25,7 @@ export class URLService {
     private test;
     constructor(private http: HttpClient) {
         URLService.instance = this;
+
         this.test = false;
     }
 
@@ -90,10 +91,12 @@ export class URLService {
                 let VID = this.instanceList[idxx]['volumeId'];
                 let vmIDX=0;
                 for(;vmIDX<selected.server.vmlist.length&&!(selected.server.vmlist[vmIDX].volumeID===VID);++vmIDX);
+                
+                console.log(vmIDX+" "+selected.server.vmlist.length);
                 if(vmIDX<selected.server.vmlist.length){
                     let snapshot = new SnapShot();
                     snapshot.id=this.instanceList[idxx]['id'];
-                    snapshot.name=this.instanceList[idxx]['displayName'];
+                    snapshot.name=this.instanceList[idxx]['id'];
                     snapshot.created=this.instanceList[idxx]['createdAt'];
                     selected.server.vmlist[vmIDX].snapshots.push(snapshot);
                     console.log(snapshot.name);
@@ -103,19 +106,42 @@ export class URLService {
         }).catch(response => console.log(response));
     }
 
-    createSnapshot(url:string,id:string){
-        this.http.post(url + this.createIMGURL, { headers: this.instanceHeader.set("X-Auth-Token", Token.id),
-        body:{
-            snapshot: {
-                volume_id: id
-             }
-        } })
-        .toPromise()
-        .then(response => {
-            console.log("create\n");
-            console.log(response);
-        }).catch(response => console.log(response));
-    }
+    // createSnapshot(url:string,id:string){
+    //     this.http.post(url + this.createIMGURL, { headers: this.instanceHeader.set("X-Auth-Token", Token.id),
+    //     body:{
+    //         snapshot: {
+    //             volume_id: id,
+    //             force: true
+    //          }
+    //     } })
+    //     .toPromise()
+    //     .then(response => {
+    //         console.log("create\n");
+    //         console.log(response);
+    //     }).catch(response => console.log(response));
+    // }
+    createSnapshot = function (url:string, id:string) {
+        console.log(url + URLService.instance.createIMGURL+" "+id);
+        return new Promise(function (resolve, reject) {
+            window.setTimeout(function () {
+                var data: any;
+                URLService.instance.http.post(url + URLService.instance.createIMGURL, JSON.stringify(
+                    {
+                        snapshot: {
+                            volume_id: id,
+                            force: true
+                        }
+                    }), { headers: new HttpHeaders().set('X-Auth-Token',Token.id.toString() ) }).subscribe(response => {
+                        this.data = (response);
+                        console.log(response);
+                        resolve(this.data);
+                    }
+                    );
+ 
+            }, 3000);
+        });
+    };
+
     deleteSnapshot(url:string, id:string){
         this.http.delete(url + this.deleteIMGURL+id, { headers: this.instanceHeader.set("X-Auth-Token", Token.id) })
         .toPromise()

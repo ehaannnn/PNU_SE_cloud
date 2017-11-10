@@ -5,29 +5,37 @@ import { LoginService } from '../login/login.service'
 import { Token } from '../Token'
 import { UserToken } from './userToken'
 import { SelectedServer } from '../SelectedServer-service'
-import {Admin} from '../Data/admin';
+import { Admin } from '../Data/admin';
+import { Server } from '../Data/server';
 @Component({
   selector: 'app-user-manage',
   templateUrl: './user-manage.component.html',
   styleUrls: ['./user-manage.component.css'],
 })
 export class UserManageComponent implements OnInit {
-  
-  adm:Admin;
+
+  adm: Admin;
   constructor(private selected: SelectedServer,
     private userTk: UserToken) {
-    let self = this;
-    console.log(LoginService._admin);
-    //self.getList();
+    selected.server = new Server("OpenStack", null);
+    userTk._HDaaSGETVDI().then(text=>{
+      console.log(text);
+    },function(error){
+      console.log(error);
+    });
   }
 
-  
+
   ngOnInit() {
 
-    let self=this;
-    this.adm=LoginService._admin;
+    let self = this;
+
+    LoginService._admin = new Admin();
+
+    self.adm = LoginService._admin;
 
     console.log(this.adm);
+    console.log(self.selected.server.name);
 
     self.getList();
 
@@ -40,23 +48,23 @@ export class UserManageComponent implements OnInit {
     console.log(Token.id);
 
     if (Token.id != null) {
-      console.log("token id isn't null");      
+      console.log("token id isn't null");
       if (server_name == "OpenStack") {
         self.userTk._promiseOpenstackListUser().then(text => {
           console.log("openstack api start");
           //console.log(text);
-          let usr=JSON.parse(text['_body'])['users'];
+          let usr = JSON.parse(text['_body'])['users'];
           console.log(usr);
           let i: number = 0;
           for (; i < usr.length; ++i) {
-            if(usr[i]['name']=="admin")
+            if (usr[i]['name'] == "admin")
               continue;
-            let tmpUser =new User();                    
+            let tmpUser = new User();
             tmpUser.id = usr[i]['id'];
             tmpUser.name = usr[i]['name'];
             tmpUser.state = usr[i]['enabled'];
-            if(usr[i]['email'])
-              tmpUser.email=usr[i]['email'];
+            if (usr[i]['email'])
+              tmpUser.email = usr[i]['email'];
             LoginService._admin.users.push(tmpUser);
           }
         }, function (error) {
@@ -91,7 +99,7 @@ export class UserManageComponent implements OnInit {
 
     }
     else {
-      this.adm=new Admin();      
+      this.adm = new Admin();
       USERS.forEach(value => {
         this.adm.users.push(value);
       })
@@ -100,10 +108,10 @@ export class UserManageComponent implements OnInit {
   }
   userDelete() {
     let userList = LoginService._admin.users;
-    let self=this;
+    let self = this;
     console.log(LoginService._admin.users);
     for (let i = 0; i < userList.length; i++) {
-      if (userList[i].isDeleted === true){
+      if (userList[i].isDeleted === true) {
         self.userTk._promiseOpenstackDeleteUser(userList[i]).then(text => {
           console.log("openstack delete start");
           console.log(text);
@@ -112,7 +120,7 @@ export class UserManageComponent implements OnInit {
         });
         LoginService._admin.users.splice(i, 1);
         i--;
-        }
+      }
     }
   }
   userCreate() {

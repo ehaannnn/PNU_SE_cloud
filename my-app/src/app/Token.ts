@@ -9,6 +9,7 @@ export class Token{
     private data:Object;
     private static http : HttpClient;
     public static id : string;
+    public static id2 : string;
 
     constructor( http: HttpClient){
         Token.http = http;
@@ -37,7 +38,29 @@ export class Token{
             }, 3000);
         });
     };
+    _promiseAdmin = function () {
+        return new Promise(function (resolve, reject) {
+            window.setTimeout(function () {
+                var data: any;
+                Token.http.post(Token.tokenUrl, JSON.stringify(
+                    {
+                        auth: {
+                            tenantName: "admin",
+                            passwordCredentials: {
+                                username: "admin",
+                                password: "openstack"
+                            }
+                        }
+                    }), { headers: Token.tokenHeaders }).subscribe(response => {
+                        this.data = (response);
+                        Token.id2 = response['access']['token']['id'];
+                        resolve(this.data);
+                    }
+                    );
 
+            }, 3000);
+        });
+    };
 	_getPromise = function() {
         return new Promise(function(resolve, reject) {
             window.setTimeout(function () {

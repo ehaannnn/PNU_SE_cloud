@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {loginCheck} from '../Data/Login'
+
 import { Admin } from '../Data/admin'
 import { ADMINS } from '../Data/admin-mock'
 import { LoginService } from './login.service'
 import {Token} from '../Token'
 import {UserToken} from '../user-manage/userToken'
 import {User} from '../Data/user';
+
+import {loginCheck} from '../Data/Login'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private token:Token,
-    private loginCh:loginCheck
+    private logincheck:loginCheck
   ) {
 
     console.log(this.admin);
@@ -32,19 +34,17 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     let self = this;    
-    this.loginCh.isLogin=true;
-    self.router.navigate(['/vm_manage/Farm']);
     
 
-    self.token._promise().then(function (text) {
+    self.token._promiseAdmin().then(function (text) {
       let chk = self.check();
       if (chk != -1) {
         self.adm=ADMINS[chk];
         LoginService._admin=self.adm;
         LoginService._admin.users=new Array<User>();
         console.log(LoginService._admin);
-        console.log(Token.id);
-        UserToken.id=Token.id;
+        self.logincheck.isLogin=true;
+        UserToken.id=Token.id2;
         self.router.navigate(['/vm_manage/Farm']);
 
       }

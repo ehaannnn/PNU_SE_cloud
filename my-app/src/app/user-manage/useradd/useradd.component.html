@@ -1,11 +1,11 @@
-<button (click)=on() >스냅샷 생성</button>
+<a class="button" href="/userManage/list#add" >사용자 생성</a>
 <div class="snapshot_schedule" id="add" *ngIf="flag">
-
-  <div style="margin:auto;">
+  <div style="margin:auto">
+    <div   style="text-align:center; font-size:25px"    >사용자 추가</div>      
     id : <input type="text" [(ngModel)]="usr.name"> <br/>
      pw : <input type="password" [(ngModel)]="usr.pw"><br/>
      email : <input type="email" [(ngModel)]="usr.email"><br/>
-    <a class="select" (click)=addUser()>생성</a>
-    <a class="select" (click)=close()>닫기</a>
+    <a class="button" (click)=addUser()>생성</a>
+    <a class="button" (click)=close()>닫기</a>
   </div>
 </div>

@@ -10,7 +10,9 @@ export class UserToken {
     //private data: any=null;
     private static http: HttpClient;
     private static http2: Http;
-    public static id = Token.id;
+    public static id = Token.id2;
+    //public websocket= new WebSocket("ws://164.125.70.15:8887");
+
 
     constructor(http: HttpClient, Http2: Http) {
         UserToken.http = http;
@@ -29,7 +31,9 @@ export class UserToken {
                 UserToken.http.post(UserToken.tokenUrl ,
                     JSON.stringify({
                         user: {
-                            name: usr.name
+                            name: usr.name,
+                            email:usr.email,
+                            pass:usr.pw
                         }
                     }), { headers: head }).subscribe(response => {
                         data = (response);
@@ -79,7 +83,7 @@ export class UserToken {
         return new Promise(function (resolve, reject) {
             window.setTimeout(function () {
                 var head = new Headers();
-                head.append('X-Auth-Token', Token.id);
+                head.append('X-Auth-Token', UserToken.id);
                 UserToken.http2.get("https://164.125.70.15:8038/HDaaSWeb/JSONTest/VM").subscribe(data => {
                     // Read the result field from the JSON response.
                     console.log(this.data);
@@ -89,5 +93,20 @@ export class UserToken {
         });
 
     }
+
+    _HDaaSGETVDI=function(){
+        return new Promise(function(resolve,reject){
+            
+            window.setTimeout(function(){
+                UserToken.http2.get("https://164.125.70.15:8038/HDaaSWeb/webSocket?ip=164.125.70.15&port=8887").subscribe(data => {
+                    // Read the result field from the JSON response.
+                    console.log(this.data);
+                    //console.log(data['VMList']);
+                });
+            },3000);
+        });
+    }
+
+    
 }
 

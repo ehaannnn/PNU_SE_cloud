@@ -73,6 +73,7 @@ export class Compute_Instance {
     server_promise = function () {
         return new Promise(function (resolve, reject) {
             window.setTimeout(function () {
+                console.log(Token.id);
                 var data: any;
                 Compute_Instance.instance.http.get(Compute_Instance.serverUrl,{ headers: Compute_Instance.tokenHeaders }).subscribe(response => {
                     this.data = (response);
