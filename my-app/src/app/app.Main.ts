@@ -9,12 +9,12 @@ import { SelectedServer } from './SelectedServer-service';
 
 import { Menu } from './menu';
 import {Token} from './Token';
-
+import {loginCheck} from './Data/Login'
 export var MENUS: Menu[] = [
 	{name: '서버관리', subMenu: ['기본관리','세부관리'], subMenuLink: ['/vm_manage/Farm','/vm_manage_detail'],selectedIDX:0},
-	{name: '통계/분석', subMenu: [], subMenuLink: ['',''],selectedIDX:0},
+	{name: '통계/분석', subMenu: [], subMenuLink: ['/vm_chart',''],selectedIDX:0},
 	{name: '백업/복구', subMenu: ['스냅샷 관리','스냅샷 예약 관리'], subMenuLink: ['/vm_snapshot/manage'],selectedIDX:0},
-	{name: '사용자 관리', subMenu: [], subMenuLink: ['',''],selectedIDX:0},
+	{name: '사용자 관리', subMenu: [], subMenuLink: ['/userManage/list',''],selectedIDX:0},
 ];
 
 @Component({
@@ -25,7 +25,10 @@ export var MENUS: Menu[] = [
 })
 
 export class Main { 
-  constructor(token : Token) {
+  login :loginCheck;
+  constructor(token : Token,data: loginCheck) {
+    this.login = data;
+    this.login.isLogin=false;
     token._promise().then(function (text) {
       console.log(text);
     }, function (error) {
@@ -37,7 +40,7 @@ export class Main {
     }, function (error) {
       console.log(error);
     });
-
+    
   }
   
   menus = MENUS;

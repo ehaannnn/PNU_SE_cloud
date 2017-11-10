@@ -1,4 +1,3 @@
-import { ModalService } from 'ng2-modal-dialog/modal.module';
 import {Component,OnInit,Injectable} from '@angular/core';
 import {VM} from '../Data/Vm';
 import {Server} from '../Data/server';
@@ -10,7 +9,6 @@ import { HDaasVMListService} from '../data/vm-mock.service';
 import { OpenStackVMListService} from '../data/vm-mock.service';
 
 
-import { VMAddModalComponent } from './VMAddModal.component';
 // The AppModule from the application src
 import { AppModule } from '../app.module';
 
@@ -23,7 +21,7 @@ import { AppModule } from '../app.module';
 export class VMManageLeft{
     ViewOfServer : boolean;
     farms: Farm[];
-    constructor(private modalService: ModalService, public farmList:FarmList, public serverService:ServerList,public selected:SelectedServer,public HDaaS:HDaasVMListService,public OpenStack:OpenStackVMListService){
+    constructor( public farmList:FarmList, public serverService:ServerList,public selected:SelectedServer,public HDaaS:HDaasVMListService,public OpenStack:OpenStackVMListService){
 		console.log("VMListView Const");		
         this.farms = farmList._farm;
         this.ViewOfServer = true;

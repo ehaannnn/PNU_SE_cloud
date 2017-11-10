@@ -1,0 +1,11 @@
+<button (click)=on() >스냅샷 생성</button>
+<div class="snapshot_schedule" id="add" *ngIf="flag">
+
+  <div style="margin:auto;">
+    id : <input type="text" [(ngModel)]="usr.name"> <br/>
+     pw : <input type="password" [(ngModel)]="usr.pw"><br/>
+     email : <input type="email" [(ngModel)]="usr.email"><br/>
+    <a class="select" (click)=addUser()>생성</a>
+    <a class="select" (click)=close()>닫기</a>
+  </div>
+</div>

@@ -45,8 +45,11 @@ export class URLService {
                 this.instanceList = response["servers"];
                 var instanceListNum: number = response["servers"].length;
                 selected.server.vmlist = new Array<VM>(instanceListNum);
+                console.log(response["servers"])
                 for (; idx < instanceListNum; ++idx) {
-                    selected.server.vmlist[idx] = this.getInstanceInfo(this.instanceList[idx]["id"],  idx);
+                    console.log(this.instanceList[idx]['id']);
+                    var id= this.instanceList[idx]['id'];
+                    selected.server.vmlist[idx] = this.getInstanceInfo(id,  idx);
                 }
                 console.log(this.instanceList['length']);
                 this.getSnapshots(url,selected);
@@ -54,17 +57,23 @@ export class URLService {
     }
     getInstanceInfo(id: string, idx: number) {
         let st: State;
+        let name: string;
+        let Vid:string;
         if (this.instanceList[idx]['status'] === 'ACTIVE')
             st = State.ON;
         else if (this.instanceList[idx]['status'] === 'EXIT')
             st = State.OFF;
         else
             st = State.PAUSE;
-        let name: string = this.instanceList[idx]["name"];
-        let Vid: string = this.instanceList[idx]["os-extended-volumes:volumes_attached"][0]['id']; 
+        try{
+        name = this.instanceList[idx]["name"];
+        Vid = this.instanceList[idx]["os-extended-volumes:volumes_attached"][0]['id']; 
+        }catch(response){
+            Vid = "None";
+        }
         console.log(this.instanceList[idx]);
         console.log(this.instanceList[idx]['status']);
-        return new VM(name, "", st, 0, 0, 0,Vid);
+        return new VM(name, "cirros", st, 0, 0, 0,Vid);
     }
     getSnapshots(url:string,selected: SelectedServer){
         this.http.get(url + this.snapshotURL, { headers: this.instanceHeader.set("X-Auth-Token", Token.id) })

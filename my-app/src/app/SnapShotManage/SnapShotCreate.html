@@ -1,6 +1,6 @@
 <a class='button' href="/vm_snapshot/schedule#open">스냅샷 예약</a>
 <div class="snapshot_schedule" id="open">
-    <div style="width:auto;height:auto;">
+    <div style="width:auto; height:330px;">
         <div>
             <span style="font-size:25px; ">스냅샷 예약</span>
             <br>
@@ -27,12 +27,10 @@
                     <td>Sat</td>
                 </tr>
                 <tr *ngFor="let week of calander;">
-                    <td *ngFor="let day of week; let i = index;"><span *ngIf="day!=0" (click)=CheckScheduleDate(day,i)>{{day}}</span></td>                        
+                    <td *ngFor="let day of week; let i = index;"><span class="day"style ="cursor: pointer;"*ngIf="day!=0" (click)=checkScheduleDate(day,i)>{{day}}</span></td>                        
                 </tr>
             </table>
         </div>
-        <br>
-        <br>
         H:
         <select [(ngModel)]="hour">
             <option *ngFor="let h of hours">{{h}}</option>
@@ -45,7 +43,7 @@
         <select [(ngModel)]="sec">
             <option *ngFor="let s of secs">{{s}}</option>
         </select>
-        <div>
+        <div style="position:absolute; right:5px;">
             <a class="select" (click)=confirmScheduleDate() href="/vm_snapshot/schedule#">예약</a>
             <a class="select" (click)=resetSchedule() href="/vm_snapshot/schedule#">닫기</a>
         </div>

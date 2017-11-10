@@ -65,7 +65,3 @@ tr,td,th{
     border-collapse: collapse;
     text-align:center;
 }
-
-day:visited{
-    color:red;
-}

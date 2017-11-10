@@ -4,10 +4,7 @@ import { User } from '../Data/User';
 
 @Injectable()
 export class LoginService {
-  public _admin : Admin=null;
+  static _admin : Admin;
   constructor() { }
-  getAdmin(adm:Admin):void{
-    this._admin=adm;
-    this._admin.users=new Array<User>();
-  }
+
 }

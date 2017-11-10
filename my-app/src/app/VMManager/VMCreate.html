@@ -1,0 +1,17 @@
+<a class='button' href="/vm_manage/VDI#open">VM 추가</a>
+<div style="z-index:10" class="snapshot_schedule" id="open">
+    <div style="width:auto;height:auto;">
+        <div>
+            <div style="font-size:25px; ">이름</div>
+            <input type="text" style="margin-right:5px;" [(ngModel)]="VMname"/>
+        </div>
+        Flavor
+        <select [(ngModel)]="flavorID">
+            <option *ngFor="let h of flavorNames">{{h}}</option>
+        </select>
+        <div>
+            <a class="select" (click)=addVM() href="/vm_manage/VDI#">추가</a>
+            <a class="select" (click)=cancel() href="/vm_manage/VDI#">취소</a>
+        </div>
+    </div>
+</div>

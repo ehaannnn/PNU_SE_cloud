@@ -40,8 +40,8 @@ export class HDaaS_VMList {
 @Injectable()
 export class Compute_Instance {
     static instance:Compute_Instance;
-    private static serverUrl = "http://164.125.70.18:50003/v2.1/899ff38b7b7a48f1a05f30220f78ccde/servers/detail";
-    private static flavorUrl = "http://164.125.70.18:50003/v2.1/899ff38b7b7a48f1a05f30220f78ccde/flavors/detail";
+    private static serverUrl = "http://164.125.70.18:50003/v2.1/02b6e616e6514959b40e4966cc004b07/servers/detail"
+    private static flavorUrl = "http://164.125.70.18:50003/v2.1/02b6e616e6514959b40e4966cc004b07/flavors/detail"
     private static tokenHeaders;
     private static HDaaSHeader;
     private static HDaaSUrl = "https://164.125.70.15:8038/HDaaSWeb/JSONTest/VM";

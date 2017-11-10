@@ -27,6 +27,7 @@ div.leftMenu{
 }
 input.snapButton{
   width: 45%;
+  
   position: relative;
   background-color: white;
   color: black;
@@ -63,6 +64,10 @@ button.SnapshotICON{
   margin-top: 5px;
   border-radius: 4px;
   cursor: pointer;
+}
+button.SnapshotICON:visited{
+  color:red;
+
 }
 div.body{
   position: relative;
